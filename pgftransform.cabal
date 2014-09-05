@@ -1,0 +1,68 @@
+Name:          pgftransform
+Version:       0.0.0.1
+Synopsis:      Transforming PGFs to accept larger languages.
+License:       Apache-2.0
+License-file:  LICENSE
+Author:        Rogan Creswick
+Maintainer:    creswick@galois.com
+Copyright:     Rogan Creswick, 2013
+Category:      Tools
+Build-type:    Simple
+Cabal-version: >=1.8
+
+Data-files:
+  dist/build/autogen/FoodsSimple.pgf
+
+Library
+   hs-source-dirs:   src/haskell
+   Exposed-modules:  Transform
+                     Utilities
+                     TransformInternal
+                     Multimap
+   GHC-Options:      -Wall
+   Build-depends:
+     base >= 4,
+     directory,
+     containers,
+     pretty-show,
+     array,
+     mtl,
+     porter,
+     text,
+     gf-erc >= 3.6
+
+Executable transform
+  HS-Source-Dirs: app/haskell
+  Main-is:        Main.hs
+  GHC-Options:    -Wall -rtsopts
+
+  Build-depends:
+     pgftransform,
+     base >= 4,
+     directory,
+     containers,
+     pretty-show,
+     array,
+     mtl,
+     cmdargs,
+     porter,
+     gf-erc >= 3.6
+
+Executable tests
+   Main-is:          Main.hs
+   GHC-Options:      -Wall
+   Hs-Source-Dirs:   tests/src
+
+   Build-depends:    base,
+                     pgftransform,
+                     HUnit,
+                     hspec,
+                     QuickCheck,
+                     containers,
+                     array,
+                     directory,
+                     process,
+                     filepath,
+                     gf-erc
+
+   GHC-Options: -Wall
